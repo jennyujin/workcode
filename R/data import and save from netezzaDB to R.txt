@@ -1,0 +1,25 @@
+﻿
+##### Querying SQL Server Data from R
+
+## INSTALL PACKAGE - RODBC
+## download the package from internet to local direction (if your DB is on the internal network)
+## then, install package from appointed local direction
+install.packages("D:\\Rpackages\\RODBC_1.3-16.zip", repos = NULL, type="source")
+library(RODBC)
+
+## myconn - hold a reference to a connection
+myconn <- odbcDriverConnect("DRIVER={NetezzaSQL};SERVER=10.32.29.203;PORT=5480;DATABASE=CNRG;UID=CRDW_74969;PWD=CRDW_74969")
+
+## import data by
+data <- sqlQuery(myconn, "select * from PE_OVRY_RTX") #believeNRows=TRUE
+head(data)
+
+data <- sqlQuery(myconn, "select * from PE_OVRY_RTX", max=5) #believeNRows=TRUE
+data
+
+data<-sqlGetResults(myconn, max=10)
+data
+
+write.csv(data, "D:\\Rdata\\20200121_practive.csv")
+
+close(myconn)
