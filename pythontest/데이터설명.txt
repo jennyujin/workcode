@@ -1,0 +1,3 @@
+
+vgsales.csv 데이터 설명
+https://www.kaggle.com/datasets/gregorut/videogamesales
